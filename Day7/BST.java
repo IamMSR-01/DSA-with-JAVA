@@ -29,6 +29,18 @@ public class BST {
         System.out.print(root.data + " ");
         inorder(root.right);
     }
+
+    public static boolean searchInBST(Node root, int key){
+        if(root == null) return false;
+
+        if (root.data == key) return true;
+
+        if (root.data > key) return searchInBST(root.left, key);
+
+        if (root.data < key) return searchInBST(root.right, key);
+
+        return false;
+    }
     public static void main(String[] args) {
         int values[] = {5, 1, 3, 4, 2, 7};
         Node root = null;
@@ -37,5 +49,7 @@ public class BST {
             root = insert(root, val);
         }
         inorder(root);
+        System.out.println();
+        System.out.println(searchInBST(root, 4));
     }
 }
