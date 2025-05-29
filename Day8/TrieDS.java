@@ -50,6 +50,19 @@ public class TrieDS {
         return true;
     }
 
+    public static boolean startWith(String prefix){
+        Node curr = root;
+        for (int i = 0; i < prefix.length(); i++) {
+            int idx = prefix.charAt(i) - 'a';
+
+            if (curr.children[idx] == null) {
+                return false;
+            }
+            curr = curr.children[idx];
+        }
+
+        return true;
+    }
     public static boolean wordBreak(String key){
         if (key.length() == 0) {
             return true;
@@ -67,6 +80,12 @@ public class TrieDS {
     }
     public static void main(String[] args) {
         String words[] = {"i", "like", "sam", "samsung", "mobile"};
-        String key = "ilikesamsung";
+        String key = "sams";
+
+        for (int i = 0; i < words.length; i++) {
+            insert(words[i]);
+        }
+
+        System.out.println(startWith(key));
     }
 }
