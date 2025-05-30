@@ -78,14 +78,27 @@ public class TrieDS {
 
         return false;
     }
-    public static void main(String[] args) {
-        String words[] = {"i", "like", "sam", "samsung", "mobile"};
-        String key = "sams";
 
-        for (int i = 0; i < words.length; i++) {
-            insert(words[i]);
+    public static int countNode(Node root){
+        if (root == null) {
+            return 0;
+        }
+        int count = 0;
+        for (int i = 0; i < 26; i++) {
+            if (root.children[i] != null) {
+                count += countNode(root.children[i]);
+            }
         }
 
-        System.out.println(startWith(key));
+        return count + 1;
+    }
+    public static void main(String[] args) {
+        String str = "ababa";
+
+        for (int i = 0; i < str.length(); i++) {
+            String suffix = str.substring(i);
+            insert(suffix);
+        }
+        System.out.println(countNode(root));
     }
 }
